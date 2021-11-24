@@ -12,7 +12,11 @@ Visual intelligence describes the ability to see and understand the deeper conte
 
 How do we build machines that can see and understand events as humans do? Many human experiences are captured on videos. Understanding how the human brain perceives an example video may offer some insight. 
 
-Image 
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/1.png">
+  <div class="figcaption">An example training set for four visual categories. In practice we may have thousands of categories and hundreds of thousands of images for each category.</div>
+</div>
+
 
 Imagine we are viewing a spaghetti and meatball cooking instructional video (Figure 1). Over the temporal sequence of the video (likely a few minutes), the task of “making spaghetti and meatballs” can be subdivided into smaller components: sub-tasks (e.g. preparing the sauce), complex actions (e.g. “adding vegetables to the sauce while stirring”, down to atomic actions (e.g. “cut onions”). Events are naturally organized in such hierarchical fashion, down to component atomic actions that could be captured in a single video frame. This is the framework that can inform computational visual intelligence. 
 
