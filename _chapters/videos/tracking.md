@@ -20,6 +20,13 @@ Visual intelligence describes the ability to see and understand the deeper conte
 How do we build machines that can see and understand events as humans do? Many human experiences are captured on videos. Understanding how the human brain perceives an example video may offer some insight. 
 
 
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/1.png">
+  <div class="figcaption">Figure 1
+</div>
+</div>
+
+
 Imagine we are viewing a spaghetti and meatball cooking instructional video (Figure 1). Over the temporal sequence of the video (likely a few minutes), the task of “making spaghetti and meatballs” can be subdivided into smaller components: sub-tasks (e.g. preparing the sauce), complex actions (e.g. “adding vegetables to the sauce while stirring”, down to atomic actions (e.g. “cut onions”). Events are naturally organized in such hierarchical fashion, down to component atomic actions that could be captured in a single video frame. This is the framework that can inform computational visual intelligence. 
 
 Computer vision has seen much success and interest at the atomic action level; from segmentation to detection and facial recognition, many algorithms can intuit static images. Standard visual recognition algorithms can output an action label from a video input, yet the models themselves are frequently black boxes that don’t understand how objects are related to one another, and the semantics of components of actions captured on the video. There is a critical need for algorithms that can interpret higher levels in the event hierarchy. 
@@ -33,7 +40,12 @@ Computer visual intelligence requires interpreting event structures as a functio
 
 Standard video recognition can be segmented as follows: an input video clip is passed through a classification network and an output action label is produced. Here, the classification network is a ‘Black box’ neural network, actions in the video are treated as monolithic entities, and time is just another dimension in the video clip. 
 
-Figure 2.1 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/21.png">
+  <div class="figcaption">Figure 2.1
+</div>
+</div>
 
 Revisiting the partonomy of events introduced earlier, we can rethink the action recognition model. More specifically, the first step of recognizing and labeling atomic actions. To further understand the intuition behind this new method of action recognition, let’s analyze an example of a man sitting on a sofa. The fundamental question is what are the cues for recognizing the action being performed. In this case, those cues include spotting the person and the sofa and how the relationship between those two objects changes over time. 
 
@@ -45,23 +57,39 @@ Taking a video input, one first creates scene specific labels. In the lecture, t
 
 
 <div class="fig figcenter fighighlight">
-  <img src="{{ site.baseurl }}/assets/examples/21.png">
-  <div class="figcaption">Put your informative caption here! If you really want to mess around with the classes in this div container then feel free, but inserting images just like this should work great!</div>
+  <img src="{{ site.baseurl }}/assets/examples/22.png">
+  <div class="figcaption">Figure 2.2
+</div>
 </div>
 
 We then sample frames from the video input allowing us to annotate all objects, and how certain objects interact with each other. In the case of a woman drinking coffee, how the woman interacts with other objects such as the cup, table, chair, and window. 
 
-figure 2.3 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/23.png">
+  <div class="figcaption">Figure 2.3
+</div>
+</div>
 
 We then annotate the pairwise human-object relationships, which results in the spatio-temporal scene graphs. It should be noted here that all the data annotations including the spatio-temporal scene graphs are hand labeled. 
 
-figure 2.4 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/24.png">
+  <div class="figcaption">Figure 2.4
+</div>
+</div>
 
 ## 3. Recap 
 
 We are taking an input video and predicting the scene graphs of the frames in the video. Next, those scene graphs are embedded into a feature space. Simultaneously, we extract short-term clip features using 3D CNN as well. Finally, we merge the features with feature bank operators to predict actions.
 
-figure 2.5 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/25.png">
+  <div class="figcaption">Figure 2.5
+</div>
+</div>
 
 ## III. A new approach: Automated video captioning via bottom-up graph construction
 
@@ -77,13 +105,21 @@ We will now introduce a new method for action recognition based on this new para
 
 There are three main steps underlying this method.  First, we do object detection of each frame: simply identifying the objects present.  Second, we model how each object moves through time across frames (temporal information).  This is done by keeping track of the same object across frames and seeing how its bounding box changes position.  Third, we model how the objects relate to one another, i.e. the interactions between them (spatial information).  This is done by creating edges between each pair of objects where the edge length corresponds to the distance between the two objects in the frame.  In summation, these three components allow us to capture how objects in the scene change through time and relate to each other.  Succinctly, this method can be described as joint spatio-temporal object relation modeling, where we have constructed graphs capturing spatiotemporal information about the scene.  Figure 3.1 shows a pictorial diagram of this approach. 
 
-figure 3.1 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/31.png">
+  <div class="figcaption">Figure 3.1. Pictorial diagram of the spatio-temporal object relation modeling approach</div>
+</div>
 
 Next, we will describe the architecture of the model more concretely.  In this method, the model has a two-branch framework.  One branch, the object branch, does the spatiotemporal modeling we described above.  It takes the set of frames from the input video, and generates graphs for the objects and their relationships over time and between each other.  The output of this branch is 1 feature vector for the input.  The second branch, the scene branch, simply processes the pixel information from the video.  This branch is essentially using the classical action recognition techniques that simply use pixel information and treat time as an additional dimension.  This branch also has a final output of a feature vector. 
 
 Now, from these 2 branches, we have two feature vectors for the input video: one from the object branch that captures the knowledge of the graphs, and one from the scene graph that captures the pixel information.  These 2 feature vectors are concatenated.  Then, this concatenated vector is finally passed into a state-of-the-art natural language generation model (transformer), which generates the caption for the video.  Figure 3.2 shows a helpful diagram visualizing this entire 2-branch framework. 
 
-figure 3.2 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/32.png">
+  <div class="figcaption">Figure 3.2. Pictorial diagram of the two-branch framework for action recognition </div>
+</div>
 
 Now that we’ve described the architecture of this new modeling approach, let’s take a moment to reflect on what we’ve accomplished.  First off, by building up graphs in a bottom-up fashion, we’re still able to get the benefits of the structural information captured by it, without needing full supervision for building it.  This represents a major advancement over the previously described scene graph method which needed tedious annotation.  Secondly, by outputting natural language descriptions of the clip, we have much more rich and accurate tags of what’s happening in the video, as opposed to just having to pigeonhole it into a broad class.  This also represents a major advancement over the scene graph method, which only did classification. 
 
@@ -94,13 +130,22 @@ Now that we’ve described the architecture of this new modeling approach, let�
 Next, we can look at some of the results of this new spatiotemporal graph approach.  In demonstrating the significance of any new algorithm, it’s important to show how your method performs on benchmark datasets for the field.  In the case of video captioning, two key benchmark datasets are MSVD and MSR-VTT.  As shown in Figure 3.3, the new method markedly outperformed previous state-of-the-art on MVSD, while also having competitive performance on MSR-VTT. 
 
 
-figure 3.3 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/33.png">
+  <div class="figcaption">Figure 3.3.  Comparison to state-of-the-art on benchmark video captioning datasets 
+</div>
+</div>
 
 ## 4. Qualitative results
 
 To understand why a new model is performing better on a benchmark task, it’s also important to dig deeper into the qualitative results of the model on specific examples to understand what the model is learning and how it’s performing better.  In the task of scene understanding, one commonly-used method is to generate a saliency map of the given frame.  The saliency map is a heatmap over the frame that shows which pixels are most “important” for action recognition -- i.e., which pixels the model is weighting most heavily in determining what’s occurring in the scene.  The saliency map results demonstrate that the new approach is better at identifying the important regions in the scene.  For example, consider Figure 3.4 below.  We can see that when compared to using scene information alone, the new approach attends more tightly to the head of the man and the ping pong paddle he is holding: which are both critical objects for understanding what’s going on.  This example shows that the object-centric graph helps the model focus on the more important parts, and correspondingly generates a better caption for the scene.  For instance, in Figure 3.4, note that the new approach is able to identify that the man is wearing a black-colored shirt, which the previous approach could not. 
 
-figure 3.4 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/34.png">
+  <div class="figcaption">Figure 3.4. Qualitative saliency map results on a specific example clip </div>
+</div>
 
 ## 5. Limitations 
 
@@ -118,7 +163,17 @@ The answer is to create a grounded dependency structure to understand which acts
 
 Consider these two consecutive frames:
 
-figure 3.5 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/351.png">
+  <div class="figcaption"> </div>
+</div>
+
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/352.png">
+  <div class="figcaption">Figure 3.5</div>
+</div>
 
 In the second frame, we need to connect the pronoun “it” to the previous instruction step in order to disambiguate. 
 
@@ -132,7 +187,11 @@ And then, once we know the relationship between the steps and the references, we
 **Visual Grounding model (Reference-Aware)**
 Ground the object referenced with its corresponding frame ie. ground “it” with the salad bowl.
 
-figure 3.6 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/36.png">
+  <div class="figcaption">Figure 3.6</div>
+</div>
 
 On a larger scale, we can create reference edges and grounding edges in order to understand causal relationships between different frames. For example, in lecture, we see this method applied to the instructional video to make spaghetti and meatballs which then allows us to create this grounded dependency structure graph.
 
