@@ -214,9 +214,7 @@ If we acquire a very blurred image where we distort the image by changing the le
 1. How do we deal with this hierarchy (at varying levels of the temporal line)
     <p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. When do we use action classification versus sentences?
-  </p>
     
-
 2. When do we discretize units?
 3. When do we drive by open language?
 
