@@ -43,7 +43,11 @@ That said, in order to leverage the decomposition of videos for recognizing acti
 
 Taking a video input, one first creates scene specific labels. In the lecture, the video input used as an example is a video of a woman sitting at a table drinking coffee while looking out a window. Taking each of our actions, we can uniformly sample five frames, resulting in the following: 
 
-figure 2.2 
+
+<div class="fig figcenter fighighlight">
+  <img src="{{ site.baseurl }}/assets/examples/21.png">
+  <div class="figcaption">Put your informative caption here! If you really want to mess around with the classes in this div container then feel free, but inserting images just like this should work great!</div>
+</div>
 
 We then sample frames from the video input allowing us to annotate all objects, and how certain objects interact with each other. In the case of a woman drinking coffee, how the woman interacts with other objects such as the cup, table, chair, and window. 
 
