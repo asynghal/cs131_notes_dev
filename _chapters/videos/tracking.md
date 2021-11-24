@@ -184,13 +184,14 @@ And then, once we know the relationship between the steps and the references, we
 **Visual Grounding model (Reference-Aware)**
 Ground the object referenced with its corresponding frame ie. ground “it” with the salad bowl.
 
+On a larger scale, we can create reference edges and grounding edges in order to understand causal relationships between different frames. For example, in lecture, we see this method applied to the instructional video to make spaghetti and meatballs which then allows us to create this grounded dependency structure graph.
+
 
 <div class="fig figcenter fighighlight">
   <img src="{{ site.baseurl }}/assets/examples/36.png">
   <div class="figcaption">Figure 4.2</div>
 </div>
 
-On a larger scale, we can create reference edges and grounding edges in order to understand causal relationships between different frames. For example, in lecture, we see this method applied to the instructional video to make spaghetti and meatballs which then allows us to create this grounded dependency structure graph.
 
 There are many applications of this approach:
 1. Virtual coaches for training people
@@ -211,7 +212,7 @@ If we acquire a very blurred image where we distort the image by changing the le
 **Open Research Questions**
 
 1. How do we deal with this hierarchy (at varying levels of the temporal line)
-  	a. When do we use action classification versus sentences?
+    \indent a. When do we use action classification versus sentences?
 2. When do we discretize units?
 3. When do we drive by open language?
 
