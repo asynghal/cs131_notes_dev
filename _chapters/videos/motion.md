@@ -27,7 +27,7 @@ Imagine we are viewing a spaghetti and meatball cooking instructional video (Fig
   
 Computer visual intelligence requires interpreting event structures as a function of its components, and the relationships of objects within each component. For example, for a computer to understand a video of a person sitting down on a sofa, the algorithm must not only recognize the person and the sofa, but the changing spatio-temporal relationship between the person and the sofa. To build a system that can decompose and recognize such actions, we need a new representation, database, and algorithm. We introduce the Action Genome, a representation decomposing actions into spatio-temporal scene graphs.
 
-**Action genome**
+## Action genome
 
 ## II. Action Genome: From Scene Graphs to Action Recognition
 ## 1. Intuition
@@ -60,7 +60,7 @@ We are taking an input video and predicting the scene graphs of the frames in th
 
 figure 2.5 
 
-**III. A new approach: Automated video captioning via bottom-up graph construction**
+## III. A new approach: Automated video captioning via bottom-up graph construction
 
 ## 1. Intuition
 
