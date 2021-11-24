@@ -1,3 +1,10 @@
+---
+title: Detecting objects by parts
+keywords: (insert comma-separated keywords here)
+order: 14 # Lecture number for 2020
+---
+
+
 ## EFFICIENT AND COMPOSITIONAL HUMAN EVENT UNDERSTANDING
 
 This lecture is the first of a series of lectures focused on state-of-the-art advances in computer vision. 
