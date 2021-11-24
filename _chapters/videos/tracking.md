@@ -9,7 +9,7 @@ This lecture is the first of a series of lectures focused on state-of-the-art ad
 
 
 
-## What is visual intelligence?
+## I. What is visual intelligence?
 
 Visual intelligence describes the ability to see and understand the deeper context of what is happening. Visual intelligence is critical for planning, informing future action, and understanding high-level semantics such as goals and intents. For example, a still image of a tiger towering over a man may suggest an attack is in progress. However, a video showing the tiger gently standing over the man (never laying its paws on his body), playfully retreating, and repeating this behavior, would suggest the tiger is simply playing—humans have ability to perceive such high-level semantics from visual observation. Why is visual intelligence important? Human memories are deeply shaped by the context of events and actions; our lived experiences extend beyond simple object recognition. 
 
@@ -149,7 +149,7 @@ To understand why a new model is performing better on a benchmark task, it’s a
 
 Although the new approach made several key strides over previous methods, there are still a few limitations.  For one, the model can only generate simple captions of a clip.  If we are seeking to make a more detailed or complex description, then unfortunately, the model is not able to do that -- it is limited to relatively short descriptions.  Secondly, the model is still only outputting a caption for the clip.  Although internally there is a graph representation being used to generate the caption, in the end the model only generates a caption, so there is no way to understand the structure of an event.  If we are seeking to get information about event structure, then unfortunately, this model is not suited for that.  The process of tackling this task of event structure analysis is the focus of the next section. 
 
-## Parsing Video Demonstrations
+## IV. Parsing Video Demonstrations
 
 Overview Questions: 
 How do we obtain the event structure from a video?
@@ -170,7 +170,7 @@ Consider these two consecutive frames:
 
 <div class="fig figcenter fighighlight">
   <img src="{{ site.baseurl }}/assets/examples/352.png">
-  <div class="figcaption">Figure 3.5</div>
+  <div class="figcaption">Figure 4.1</div>
 </div>
 
 In the second frame, we need to connect the pronoun “it” to the previous instruction step in order to disambiguate. 
@@ -188,7 +188,7 @@ Ground the object referenced with its corresponding frame ie. ground “it” wi
 
 <div class="fig figcenter fighighlight">
   <img src="{{ site.baseurl }}/assets/examples/36.png">
-  <div class="figcaption">Figure 3.6</div>
+  <div class="figcaption">Figure 4.2</div>
 </div>
 
 On a larger scale, we can create reference edges and grounding edges in order to understand causal relationships between different frames. For example, in lecture, we see this method applied to the instructional video to make spaghetti and meatballs which then allows us to create this grounded dependency structure graph.
