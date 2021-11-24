@@ -197,7 +197,7 @@ There are many applications of this approach:
 1. Virtual coaches for training people
 2. Robot learning from demonstrations
 
-**Human Pose Estimation**
+## Human Pose Estimation
 
 This area of research attempts to think about alternatives to capturing high resolution images/videos of individuals given the privacy concerns involved. 
 
